@@ -1,4 +1,4 @@
-import types from './todos-types';
+import types from './contacts-types';
 import shortid from 'shortid';
 
 const addContact = (name, number) => ({

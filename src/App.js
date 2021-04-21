@@ -26,21 +26,21 @@ function App() {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const addContact = (name, number) => {
-    const normalizedName = name.toLowerCase();
-    if (
-      contacts.find(contact => contact.name.toLowerCase() === normalizedName)
-    ) {
-      alert(`${name} is already in contacts`);
-      return;
-    }
-    const newContact = {
-      id: shortid.generate(),
-      name,
-      number,
-    };
-    setContacts(prState => [newContact, ...prState]);
-  };
+  // const addContact = (name, number) => {
+  //   const normalizedName = name.toLowerCase();
+  //   if (
+  //     contacts.find(contact => contact.name.toLowerCase() === normalizedName)
+  //   ) {
+  //     alert(`${name} is already in contacts`);
+  //     return;
+  //   }
+  //   const newContact = {
+  //     id: shortid.generate(),
+  //     name,
+  //     number,
+  //   };
+  //   setContacts(prState => [newContact, ...prState]);
+  // };
 
   const changeFilter = e => {
     setFilter(e.currentTarget.value);
@@ -57,7 +57,7 @@ function App() {
   return (
     <Container>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
       <h2>Contacts</h2>
       <Filter value={filter} onChange={changeFilter} />
       <ContactList
