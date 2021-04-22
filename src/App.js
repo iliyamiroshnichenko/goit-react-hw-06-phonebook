@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import shortid from 'shortid';
-
 import Container from './components/Container';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
@@ -14,56 +12,22 @@ import Filter from './components/Filter';
 // ];
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
+  // useEffect(() => {
+  //   const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
+  //   setContacts(parsedContacts);
+  // }, []);
 
-  useEffect(() => {
-    const parsedContacts = JSON.parse(localStorage.getItem('contacts'));
-    setContacts(parsedContacts);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
-
-  // const addContact = (name, number) => {
-  //   const normalizedName = name.toLowerCase();
-  //   if (
-  //     contacts.find(contact => contact.name.toLowerCase() === normalizedName)
-  //   ) {
-  //     alert(`${name} is already in contacts`);
-  //     return;
-  //   }
-  //   const newContact = {
-  //     id: shortid.generate(),
-  //     name,
-  //     number,
-  //   };
-  //   setContacts(prState => [newContact, ...prState]);
-  // };
-
-  const changeFilter = e => {
-    setFilter(e.currentTarget.value);
-  };
-
-  const deleteContact = contactId =>
-    setContacts(prState => prState.filter(({ id }) => id !== contactId));
-
-  const normalizedFilter = filter.toLowerCase();
-  const filteredContacts = contacts.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter),
-  );
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
   return (
     <Container>
       <h1>Phonebook</h1>
       <ContactForm />
       <h2>Contacts</h2>
-      <Filter value={filter} onChange={changeFilter} />
-      <ContactList
-        contacts={filteredContacts}
-        onDeleteContact={deleteContact}
-      />
+      <Filter />
+      <ContactList />
     </Container>
   );
 }
